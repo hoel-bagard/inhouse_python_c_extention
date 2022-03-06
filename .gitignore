@@ -1,0 +1,19 @@
+# Editors
+.kate-swp
+# Kdev
+xc_exam.kdev4
+.kdev4
+compile_commands.json
+build/
+
+# CMake
+cmake_install
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+Makefile
+
+# Output
+PrimeCounter
+obj/
+bin/
