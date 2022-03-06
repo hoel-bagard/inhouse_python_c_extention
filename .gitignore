@@ -6,12 +6,9 @@ xc_exam.kdev4
 compile_commands.json
 build/
 
-# CMake
-cmake_install
-CMakeCache.txt
-CMakeFiles
-cmake_install.cmake
-Makefile
+# Distribution / packaging
+dist/
+*.egg-info/
 
 # Output
 interval_counter/interval_counter
