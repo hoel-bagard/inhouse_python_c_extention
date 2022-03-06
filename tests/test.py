@@ -1,11 +1,10 @@
-# from my_counter import interval_counter
-import mycounter
+from mycounter import interval_counter
 
 
 def main():
     print("Start")
-    sum = mycounter.interval_counter(1, 10)
-    print(sum)
+    sum_res = interval_counter(1, 10)
+    print(f"Finished properly, result: {sum_res}")
 
 
 if __name__ == "__main__":
