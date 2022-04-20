@@ -1,10 +1,10 @@
 from distutils.core import Extension, setup
 # from setuptools import Extension, setup
 
-counter_module = Extension("mycounter", sources=["interval_counter/interval_counter.c"])
+inhouse_module = Extension("inhouse", sources=["inhouse/inhouse.c"])
 
 setup(
-    name="mycounter",
+    name="inhouse",
     version="0.0.1",
-    description="Interval counter package",
-    ext_modules=[counter_module])
+    description="Inhouse package",
+    ext_modules=[inhouse_module])

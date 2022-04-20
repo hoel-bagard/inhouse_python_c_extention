@@ -1,6 +1,11 @@
 #define PY_SSIZE_T_CLEAN
 #include <Python.h>
+#include <stdio.h>
 
+static PyObject *print_hello_world(PyObject *self) {
+  printf("\nHello, World!\n");
+  Py_RETURN_NONE;
+}
 
 int interval_counter(int start, int end) {
   int sum = 0;
@@ -41,21 +46,39 @@ PyDoc_STRVAR(interval_counter_doc,
              );
 
 
-static PyMethodDef CounterMethods[] = {
-  {"interval_counter",  interval_counter_wrapper, METH_VARARGS, interval_counter_doc},
+static PyObject *list_append_1(PyObject *self, PyObject *args) {
+  PyObject *pList;
+  PyObject *temporary_item = NULL;
+  if (!PyArg_ParseTuple(args, "O!", &PyList_Type, &pList)) {
+    PyErr_SetString(PyExc_TypeError, "parameter must be a list.");
+    return NULL;
+  }
+
+  temporary_item = PyLong_FromLong(1);
+  PyList_Append(pList, temporary_item);
+  Py_DECREF(temporary_item);
+  temporary_item =  NULL; /* Good practice... */
+  Py_RETURN_NONE;
+}
+
+
+static PyMethodDef InhouseMethods[] = {
+  {"interval_counter", interval_counter_wrapper, METH_VARARGS, interval_counter_doc},
+  {"print_hello_world", (PyCFunction)print_hello_world, METH_NOARGS, "Print hello world."},
+  {"list_append_1", list_append_1, METH_VARARGS, "Happen 1 to a list."},
   {NULL, NULL, 0, NULL}        /* Sentinel */
 };
 
 
-static struct PyModuleDef mycounter_module = {
+static struct PyModuleDef inhouse_module = {
   PyModuleDef_HEAD_INIT,
-  "mycounter",   /* Name of module */
+  "inhouse",   /* Name of module */
   "Inhouse c python package",  /* Module documentation, may be NULL */
   -1,       /* Size of per-interpreter state of the module, or -1 if the module keeps state in global variables. */
-  CounterMethods
+  InhouseMethods
 };
 
 
-PyMODINIT_FUNC PyInit_mycounter(void) {
-    return PyModule_Create(&mycounter_module);
+PyMODINIT_FUNC PyInit_inhouse(void) {
+    return PyModule_Create(&inhouse_module);
 }
