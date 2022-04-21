@@ -13,6 +13,7 @@ def main():
     print(f"List before: {my_list}")
     list_append_1(my_list)
     print(f"List after: {my_list}")
+
     print("Finished properly")
 
 
